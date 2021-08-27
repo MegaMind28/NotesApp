@@ -32,7 +32,7 @@ ScreenShots :-
 Features :-
 
 1. Used Google Authentication.
-2. As firestore is used it also allows to sync notes/data whenever user gets connected to internet. (Can be used as offline/local notesApp).
+2. Can be used as offline/local notesApp.
 3. Added 'Mark as star/unstar' feature to identify important notes.
 4. Added popup window only if theres any changes in notes (while exiting View/Edit Screen).
 5. Auto-Login :- Saving credentials to avoid manual login on every app boot.
