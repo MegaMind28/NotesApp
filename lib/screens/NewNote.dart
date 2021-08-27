@@ -17,14 +17,40 @@ class CreateNewNoteState extends State<CreateNewNote> {
   String title;
   String description;
   bool isStarred = false;
+  String UserUID;
 
   final _TitleController = TextEditingController();
   final _DescriptionController = TextEditingController();
+
+  void AddData()async{
+
+    CollectionReference ref = Firestore.instance
+        .collection('users')
+        .document(UserUID)
+        .collection('notes');
+
+    var data = {
+      'title': title,
+      'description': description,
+      'Starred' : isStarred,
+      'created': DateTime.now(),
+    };
+
+    ref.add(data).whenComplete(() =>
+        Fluttertoast.showToast(
+            msg: "Note Added",
+            toastLength: Toast.LENGTH_SHORT,
+            timeInSecForIosWeb: 2)
+    );
+    Navigator.pop(context);
+
+  }
 
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    UserUID = user.uid;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -70,7 +96,7 @@ class CreateNewNoteState extends State<CreateNewNote> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.only(left: 20.0, right: 20.0, top: 6.0),
+                      const EdgeInsets.only(left: 20.0, right: 20.0, top: 14.0),
                   child: SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
                     child: Column(
@@ -90,10 +116,13 @@ class CreateNewNoteState extends State<CreateNewNote> {
                                   fontWeight: FontWeight.w600
                               ),
                             ),
-                            SizedBox(
-                              height: 1.0,
-                              child: Container(
-                                color: Colors.grey,
+                            Padding(
+                              padding:  EdgeInsets.only(top: 8.0,bottom: 8.0),
+                              child: SizedBox(
+                                height: 1.0,
+                                child: Container(
+                                  color: Colors.grey,
+                                ),
                               ),
                             ),
                             Container(
@@ -146,26 +175,7 @@ class CreateNewNoteState extends State<CreateNewNote> {
                     description = _DescriptionController.text;
 
                   if(title.isNotEmpty && description.isNotEmpty){
-                    CollectionReference ref = Firestore.instance
-                        .collection('users')
-                        .document(user.uid)
-                        .collection('notes');
-
-                    var data = {
-                      'title': title,
-                      'description': description,
-                      'Starred' : isStarred,
-                      'created': DateTime.now(),
-                    };
-
-                    ref.add(data).whenComplete(() =>
-                        Fluttertoast.showToast(
-                            msg: "Note Added",
-                            toastLength: Toast.LENGTH_SHORT,
-                            timeInSecForIosWeb: 2)
-                    );
-                    Navigator.pop(context);
-
+                    AddData();
                   } else {
 
                     Fluttertoast.showToast(

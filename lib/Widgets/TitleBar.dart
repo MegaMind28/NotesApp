@@ -26,6 +26,7 @@ class _TitleBarState extends State<TitleBar> {
                 child: const Text('Yes'),
                 onPressed: () {
                   AuthService.signOut();
+                  Navigator.pop(context);
                 },
                 style: TextButton.styleFrom(
                     primary: Colors.white,

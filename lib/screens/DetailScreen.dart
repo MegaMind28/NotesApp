@@ -31,7 +31,6 @@ class _DetailScreenState extends State<DetailScreen> {
   String title;
   String description;
   bool isStarred;
- // bool isEdited=false;
   String UserUID;
 
   var _TitleController = TextEditingController();
