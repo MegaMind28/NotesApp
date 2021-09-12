@@ -37,6 +37,7 @@ Features :-
 4. Added popup window to update note only if theres any changes in notes (while exiting View/Edit Screen).
 5. Auto-Login :- Saving credentials to avoid manual login on every app boot.
 6. Added functionality to share notes on any other 3rd party app.
+7. Dark Mode Comming soon
 
 Files Link :- 
 1. Apk's :- https://drive.google.com/drive/folders/11s-UBthpQX7w8NFS6FuEpQ-TZ7ItljpI?usp=sharing
